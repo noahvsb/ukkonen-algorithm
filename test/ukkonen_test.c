@@ -56,6 +56,9 @@ void add_new_node_test(void) {
 }
 
 void ukkonen_test(void) {
-    Node* root = ukkonen("test");
+    Node* root = ukkonen("ababcc");
+
+    // TODO
+
     free_node(root);
 }

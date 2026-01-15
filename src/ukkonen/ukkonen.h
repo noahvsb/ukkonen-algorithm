@@ -7,6 +7,7 @@
 #include <stdbool.h>
 
 #include "../node/node.h"
+#include "../macros.h"
 
 typedef struct PX {
     Node* p;

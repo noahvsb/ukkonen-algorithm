@@ -4,12 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define ALLOCATION_ERROR() \
-    do { \
-        fprintf(stderr, "Allocation error at %s:%d: ", __FILE__, __LINE__); \
-        perror(NULL); \
-        exit(EXIT_FAILURE); \
-    } while (0)
+#include "../macros.h"
 
 typedef struct Node Node;
 

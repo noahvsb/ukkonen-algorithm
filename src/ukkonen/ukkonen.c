@@ -12,6 +12,8 @@ Node* ukkonen(char* s) {
     Node* needs_suffix_link = NULL;
     for (int i = 1; i <= n; i++) {
         for (; j < i; j++) {
+            DEBUG_PRINTF("\n[DEBUG] handling j=%d,i=%i", j, i);
+
             // move px until it points to the deepest node possible
             int diff = px->x;
             move_px(px, j, s);
@@ -31,18 +33,24 @@ Node* ukkonen(char* s) {
 
             // add if doesn't exist
             if (!exists) {
+                DEBUG_PRINTF("\n[DEBUG] adding new node");
+
                 Node* new_node = add_new_node(px, j + diff, s, n);
 
                 // add suffix link if necessary
                 if (needs_suffix_link != NULL) {
+                    DEBUG_PRINTF("\n[DEBUG] adding suffix link");
                     needs_suffix_link->link = new_node;
                 }
 
                 // new node needs a suffix link if not a leaf
                 if (new_node->end != n) needs_suffix_link = new_node;
             } else {
+                DEBUG_PRINTF("\n[DEBUG] exists already");
+
                 // add suffix link if necessary
                 if (needs_suffix_link != NULL) {
+                    DEBUG_PRINTF("\n[DEBUG] adding suffix link");
                     needs_suffix_link->link = px->p;
                 }
 
@@ -51,21 +59,20 @@ Node* ukkonen(char* s) {
 
             // update px
             if (!exists) {
-                // p is root
-                if (px->p->end == 0)
-                    px->x--;
-                // p is not root
-                else
-                    px->p = px->p->link;
-            } else {
-                // iteration fully finished
+                // next iteration, iteration finished
                 if (j == i - 1) {
                     px->p = root;
                     px->x = 0;
                 }
-                // not fully finished
+                // same iteration, p is root
+                else if (px->p->end == 0)
+                    px->x--;
+                // same iteration, p is not root
                 else
-                    px->x++;
+                    px->p = px->p->link;
+            } else {
+                // next iteration, iteration not finished
+                px->x++;
 
                 // break if it exists
                 break;
@@ -97,7 +104,7 @@ void move_px(PX* px, int j, char* s) {
                 if (px->x >= len) {
                     // move to next node
                     px->x -= len;
-                    px->p = n; // results in an endless loop when n has no children (but this shouldn't occur)
+                    px->p = n;
                     j += len;
                 } else {
                     // current node is the last
@@ -114,6 +121,7 @@ void move_px(PX* px, int j, char* s) {
                 done = true;
             }
         }
+        if (px->p->size == 0) done = true;
     }
 }
 
