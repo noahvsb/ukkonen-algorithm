@@ -8,12 +8,12 @@ void node_test(void) {
     add_child(n, create_node(1, 2));
 
     TEST_CHECK(n->size == 1);
-    TEST_CHECK(n->size_left == 0);
+    TEST_CHECK(n->leftover == 0);
 
     add_child(n, create_node(2, 3));
 
     TEST_CHECK(n->size == 2);
-    TEST_CHECK(n->size_left == 0);
+    TEST_CHECK(n->leftover == 0);
 
     TEST_CHECK(n->children[0]->end == 2);
     TEST_CHECK(n->children[1]->end == 3);

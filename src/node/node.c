@@ -9,8 +9,8 @@ Node* create_node(int start, int end) {
     node->end = end;
 
     node->size = 0;
-    node->size_left = 1;
-    node->children = calloc(node->size_left, sizeof(Node*));
+    node->leftover = 1;
+    node->children = calloc(node->leftover, sizeof(Node*));
     if (!node->children) ALLOCATION_ERROR();
     node->children[0] = NULL;
 
@@ -22,14 +22,14 @@ void add_child(Node* node, Node* child) {
 
     node->children[node->size] = child;
     node->size++;
-    node->size_left--;
+    node->leftover--;
 }
 
 void expand_children(Node* node) {
-    if (node->size_left == 0) {
+    if (node->leftover == 0) {
         node->children = realloc(node->children, 2 * node->size * sizeof(Node*)); // double the size
         if (!node->children) ALLOCATION_ERROR();
-        node->size_left = node->size;
+        node->leftover = node->size;
     }
 }
 

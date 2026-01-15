@@ -16,6 +16,10 @@ typedef struct PX {
 
 Node* ukkonen(char* s);
 
-PX move_px(PX px, int j, char* s);
+PX* create_px(Node* p, int x);
+
+void move_px(PX* px, int j, char* s);
+
+Node* add_new_node(PX* px, int j, char* s, int n);
 
 #endif

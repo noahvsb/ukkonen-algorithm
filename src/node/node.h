@@ -16,7 +16,7 @@ typedef struct Node Node;
 struct Node {
     Node** children;
     int size; // current amount of children
-    int size_left; // amount of children you can still add before needing to realloc
+    int leftover; // amount of children you can still add before needing to realloc
 
     Node* link;
     int start;

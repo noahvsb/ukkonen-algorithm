@@ -3,7 +3,8 @@
 TEST_LIST = {
     { "node", node_test },
 
-    { "ukkonen: move_px", move_px_test },
+    { "ukkonen: px", px_test },
+    { "ukkonen: add new node", add_new_node_test },
     { "ukkonen: algorithm", ukkonen_test },
 
     { NULL, NULL }
