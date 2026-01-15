@@ -14,7 +14,7 @@ SRC_FILES := $(shell find $(SRC_DIR) -name '*.c')
 TEST_FILES := $(filter-out $(TEST_DIR)/test_large.c, $(shell find $(TEST_DIR) -name '*.c'))
 
 
-.PHONY: all build_test test
+.PHONY: all build_test test valgrind
 
 all: test
 
@@ -23,6 +23,11 @@ build_test: $(TEST_FILES) $(SRC_FILES)
 	@echo "✅ compiled $(TEST_TARGET)"
 
 test: build_test
-	./$(TEST_TARGET)
+	@ARGS="$(filter-out $@,$(MAKECMDGOALS))"; \
+	./$(TEST_TARGET) $$ARGS
 	@echo "✅ ran tests"
+
+valgrind: build_test
+	valgrind ./$(TEST_TARGET)
+	@echo "✅ ran tests with valgrind"
 

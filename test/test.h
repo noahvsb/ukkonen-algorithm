@@ -3,7 +3,10 @@
 
 #include "lib/acutest.h"
 
-// algorithm tests
-void algorithm_test(void);
+// node_test.c
+void node_test(void);
+
+// ukkonen_test.c
+void ukkonen_test(void);
 
 #endif

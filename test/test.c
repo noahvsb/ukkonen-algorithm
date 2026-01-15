@@ -1,7 +1,8 @@
 #include "test.h"
 
 TEST_LIST = {
-    { "algorithm", algorithm_test },
+    { "node", node_test },
+    { "ukkonen", ukkonen_test },
 
     { NULL, NULL }
 };
