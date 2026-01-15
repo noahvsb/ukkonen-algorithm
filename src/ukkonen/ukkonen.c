@@ -14,7 +14,7 @@ Node* ukkonen(char* s) {
     for (int i = 2; i <= strlen(s); i++) {
         while (true) {
             // move px until it points to the deepest node possible
-            px = move_px(px, j, i, s);
+            px = move_px(px, j, s);
 
             // check if exists
             // TODO
@@ -36,18 +36,38 @@ Node* ukkonen(char* s) {
         }
     }
 
-    free_node(root);
-
-    return NULL;
+    return root;
 }
 
-PX move_px(PX px, int j, int i, char* s) {
-    while (true) {
+PX move_px(PX px, int j, char* s) {
+    bool done = false;
+    while (!done) {
         for (int k = 0; k < px.p->size; k++) {
-            //int start = px.p->children[k]->start;
-            // TODO
+            Node* n = px.p->children[k];
+            char c = s[n->start];
+            int len = n->end - n->start;
+
+            if (c == s[j]) {
+                if (px.x >= len) {
+                    // move to next node
+                    px.x -= len;
+                    px.p = n; // results in an endless loop when n has no children (but this shouldn't occur)
+                    j += len;
+                } else {
+                    // current node is the last
+                    px.i = k;
+                    done = true;
+                }
+                // done checking the children, since there can only be 1 match maximum
+                break;
+            }
+
+            // found nothing
+            if (k == px.p->size - 1) {
+                // current node is the last
+                done = true;
+            }
         }
-        break;
     }
     return px;
 }

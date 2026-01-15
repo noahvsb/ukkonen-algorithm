@@ -7,6 +7,7 @@
 void node_test(void);
 
 // ukkonen_test.c
+void move_px_test(void);
 void ukkonen_test(void);
 
 #endif
