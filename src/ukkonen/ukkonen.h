@@ -15,6 +15,8 @@ typedef struct PX {
     int i; // tells you in which child to look for the next
 } PX;
 
+// expected that the string already contains the ending char, this way you can customize it ;)
+// totally not because it's annoying to add in code
 Node* ukkonen(char* s);
 
 PX* create_px(Node* p, int x);

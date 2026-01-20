@@ -20,10 +20,10 @@ Node* ukkonen(char* s) {
             diff -= px->x; // s[j + diff] is where we need to start looking at to check if it exists
 
             // check if it exists
-            bool exists = px->x != 0;
+            bool exists = px->i >= 0 && px->i < px->p->size && px->p->children[px->i] != NULL;
             if (exists) {
                 int start = px->p->children[px->i]->start;
-                for (int k = 1; k < px->x; k++) {
+                for (int k = 1; k <= px->x; k++) {
                     if (s[j + diff + k] != s[start + k]) {
                         exists = false;
                         break;

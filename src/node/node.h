@@ -21,7 +21,7 @@ struct Node {
 };
 
 Node* create_node(int start, int end);
-// free's node and all children recursively
+// frees node and all children recursively
 void free_node(Node* node);
 
 // will expand if necessary
