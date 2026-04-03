@@ -5,7 +5,7 @@
         exit(EXIT_FAILURE); \
     } while (0)
 
-#define DEBUG // uncomment if you don't want debug inputs
+#define DEBUG // uncomment if you don't want debug outputs
 
 #ifdef DEBUG
 #define DEBUG_PRINTF(...) printf(__VA_ARGS__)
