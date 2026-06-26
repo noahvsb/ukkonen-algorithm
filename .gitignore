@@ -2,3 +2,5 @@
 
 # Targets
 run_tests
+
+/test/include

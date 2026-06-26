@@ -1,7 +1,7 @@
 #ifndef TESTS_H
 #define TESTS_H
 
-#include "lib/acutest.h"
+#include "include/acutest.h"
 
 // node_test.c
 void node_test(void);
