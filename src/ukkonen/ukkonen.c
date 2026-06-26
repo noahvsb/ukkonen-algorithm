@@ -40,11 +40,11 @@ Node* ukkonen(char* s) {
                 // add suffix link if necessary
                 if (needs_suffix_link != NULL) {
                     DEBUG_PRINTF("adding suffix link");
-                    needs_suffix_link->link = new_node;
+                    needs_suffix_link->link = px->x != 0 ? new_node : px->p;
                 }
 
                 // new node needs a suffix link if not a leaf
-                if (new_node->end != n) needs_suffix_link = new_node;
+                needs_suffix_link = (new_node->end != n) ? new_node : NULL;
             } else {
                 DEBUG_PRINTF("exists already");
 

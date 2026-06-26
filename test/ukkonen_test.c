@@ -64,8 +64,8 @@ void ukkonen_test(void) {
 
     Node* child0 = root->children[0];
     Node* child1 = root->children[1];
-    // Node* child2 = root->children[2];
-    // Node* child3 = root->children[3];
+    Node* child2 = root->children[2];
+    Node* child3 = root->children[3];
 
     // child 0
     TEST_CHECK(child0->start == 0 && child0->end == 2);
@@ -93,23 +93,23 @@ void ukkonen_test(void) {
     TEST_CHECK(child1->children[1]->size == 0 && child1->children[1]->leftover == 1);
     TEST_CHECK(child1->children[1]->link == NULL);
 
-    // // child 2
-    // TEST_CHECK(child2->start == 4 && child2->end == 5);
-    // TEST_CHECK(child2->size == 2 && child2->leftover == 0);
-    // TEST_CHECK(child2->link == root);
+    // child 2
+    TEST_CHECK(child2->start == 4 && child2->end == 5);
+    TEST_CHECK(child2->size == 2 && child2->leftover == 0);
+    TEST_CHECK(child2->link == root);
 
-    // TEST_CHECK(child2->children[0]->start == 5 && child2->children[0]->end == 7);
-    // TEST_CHECK(child2->children[0]->size == 0 && child2->children[0]->leftover == 1);
-    // TEST_CHECK(child2->children[0]->link == NULL);
+    TEST_CHECK(child2->children[0]->start == 5 && child2->children[0]->end == 7);
+    TEST_CHECK(child2->children[0]->size == 0 && child2->children[0]->leftover == 1);
+    TEST_CHECK(child2->children[0]->link == NULL);
 
-    // TEST_CHECK(child2->children[1]->start == 6 && child2->children[1]->end == 7);
-    // TEST_CHECK(child2->children[1]->size == 0 && child2->children[1]->leftover == 1);
-    // TEST_CHECK(child2->children[1]->link == NULL);
+    TEST_CHECK(child2->children[1]->start == 6 && child2->children[1]->end == 7);
+    TEST_CHECK(child2->children[1]->size == 0 && child2->children[1]->leftover == 1);
+    TEST_CHECK(child2->children[1]->link == NULL);
 
-    // // child 3
-    // TEST_CHECK(child3->start == 6 && child3->end == 7);
-    // TEST_CHECK(child3->size == 0 && child3->leftover == 1);
-    // TEST_CHECK(child3->link == NULL);
+    // child 3
+    TEST_CHECK(child3->start == 6 && child3->end == 7);
+    TEST_CHECK(child3->size == 0 && child3->leftover == 1);
+    TEST_CHECK(child3->link == NULL);
 
     free_node(root);
 }
