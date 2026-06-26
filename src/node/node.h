@@ -16,7 +16,7 @@ struct Node {
     Node* link;
     int start;
     // not included
-    // for leafs this will be |s|, but you need to know that it's actually min(it, |s|)
+    // for leafs this will be |s|, but you need to know that it's actually min(it, |s|) in theory
     int end;
 };
 

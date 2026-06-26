@@ -12,7 +12,7 @@ Node* ukkonen(char* s) {
     Node* needs_suffix_link = NULL;
     for (int i = 1; i <= n; i++) {
         for (; j < i; j++) {
-            DEBUG_PRINTF("\n[DEBUG] handling j=%d,i=%i", j, i);
+            DEBUG_PRINTF("handling j=%d,i=%i", j, i);
 
             // move px until it points to the deepest node possible
             int diff = px->x;
@@ -33,24 +33,24 @@ Node* ukkonen(char* s) {
 
             // add if doesn't exist
             if (!exists) {
-                DEBUG_PRINTF("\n[DEBUG] adding new node");
+                DEBUG_PRINTF("adding new node");
 
-                Node* new_node = add_new_node(px, j + diff, s, n);
+                Node* new_node = add_new_node(px, j + diff + px->x, s, n);
 
                 // add suffix link if necessary
                 if (needs_suffix_link != NULL) {
-                    DEBUG_PRINTF("\n[DEBUG] adding suffix link");
+                    DEBUG_PRINTF("adding suffix link");
                     needs_suffix_link->link = new_node;
                 }
 
                 // new node needs a suffix link if not a leaf
                 if (new_node->end != n) needs_suffix_link = new_node;
             } else {
-                DEBUG_PRINTF("\n[DEBUG] exists already");
+                DEBUG_PRINTF("exists already");
 
                 // add suffix link if necessary
                 if (needs_suffix_link != NULL) {
-                    DEBUG_PRINTF("\n[DEBUG] adding suffix link");
+                    DEBUG_PRINTF("adding suffix link");
                     needs_suffix_link->link = px->p;
                 }
 
@@ -121,6 +121,7 @@ void move_px(PX* px, int j, char* s) {
                 done = true;
             }
         }
+        // p is leaf
         if (px->p->size == 0) done = true;
     }
 }
@@ -136,9 +137,9 @@ Node* add_new_node(PX* px, int j, char* s, int n) {
     }
     // add in the middle of an edge and attach leaf
     else {
-        new_node = create_node(px->p->end, px->p->end + px->x);
-
         Node* child = px->p->children[px->i];
+
+        new_node = create_node(child->start, child->start + px->x);
         
         // put new node inbetween
         px->p->children[px->i] = new_node;
