@@ -93,6 +93,7 @@ PX* create_px(Node* p, int x) {
 }
 
 void move_px(PX* px, int j, char* s) {
+    px->i = -1;
     bool done = false;
     while (!done) {
         for (int k = 0; k < px->p->size; k++) {
